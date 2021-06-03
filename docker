@@ -1,0 +1,5 @@
+sudo docker run --name mysqldb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
+
+sudo docker run -p 6379:6379 --name redis -v /data/redis/redis.conf:/etc/redis/redis.conf -v /data/redis/data:/data -d redis redis-server /etc/redis/redis.conf --appendonly yes
+
+sudo docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:management

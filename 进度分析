@@ -1,0 +1,4 @@
+5.24：
+（1）安装docker，并在docker安装mysql，redis，rabbitmq，并且都测试链接成功
+（2）安装navicat，redis数据库软件
+（3）下一步工作计划：程序实现mysql，redis数据库交互，git
