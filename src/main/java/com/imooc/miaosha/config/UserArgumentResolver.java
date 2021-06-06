@@ -1,9 +1,7 @@
 package com.imooc.miaosha.config;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.imooc.miaosha.domain.MiaoshaUser;
+import com.imooc.miaosha.service.MiaoshaUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -13,8 +11,9 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import com.imooc.miaosha.domain.MiaoshaUser;
-import com.imooc.miaosha.service.MiaoshaUserService;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Service
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {

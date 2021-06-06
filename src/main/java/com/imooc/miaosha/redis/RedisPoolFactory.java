@@ -3,9 +3,9 @@ package com.imooc.miaosha.redis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import com.imooc.miaosha.redis.RedisConfig;
 
 @Service
 public class RedisPoolFactory {
