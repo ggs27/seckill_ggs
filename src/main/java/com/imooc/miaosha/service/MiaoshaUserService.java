@@ -65,6 +65,7 @@ public class MiaoshaUserService {
 		}
 		//生成cookie
 		String token	 = UUIDUtil.uuid();
+		//todo:用户每登陆一次就生成一个token
 		addCookie(response, token, user);
 		return true;
 	}

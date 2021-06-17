@@ -30,7 +30,7 @@ public class LoginController {
     public String toLogin() {
         return "login";
     }
-    
+
     @RequestMapping("/do_login")
     @ResponseBody
     public Result<Boolean> doLogin(HttpServletResponse response, @Valid LoginVo loginVo) {
