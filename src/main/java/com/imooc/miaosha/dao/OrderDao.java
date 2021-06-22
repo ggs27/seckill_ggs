@@ -21,4 +21,11 @@ public interface OrderDao {
 	@Select("select * from sk_order where id = #{orderId}")
 	public OrderInfo getOrderById(@Param("orderId")long orderId);
 
+	@Delete("delete from sk_order_info")
+	public void deleteOrders();
+
+	@Delete("delete from sk_order")
+	public void deleteMiaoshaOrders();
+
+	
 }

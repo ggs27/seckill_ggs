@@ -24,23 +24,23 @@ public class MiaoshaUserService {
 	
 	@Autowired
 	MiaoshaUserDao miaoshaUserDao;
+	
 	@Autowired
 	RedisService redisService;
 	
 	public MiaoshaUser getById(long id) {
 		//取缓存
-		MiaoshaUser user = redisService.get(MiaoshaUserKey.getById,""+id,MiaoshaUser.class);
-		if (user != null){
+		MiaoshaUser user = redisService.get(MiaoshaUserKey.getById, ""+id, MiaoshaUser.class);
+		if(user != null) {
 			return user;
 		}
 		//取数据库
 		user = miaoshaUserDao.getById(id);
-		if(user != null){
-			redisService.set(MiaoshaUserKey.getById,""+id,user);
+		if(user != null) {
+			redisService.set(MiaoshaUserKey.getById, ""+id, user);
 		}
 		return user;
 	}
-
 	// http://blog.csdn.net/tTU1EvLDeLFq5btqiK/article/details/78693323
 	public boolean updatePassword(String token, long id, String formPass) {
 		//取user
@@ -60,6 +60,7 @@ public class MiaoshaUserService {
 		return true;
 	}
 
+
 	public MiaoshaUser getByToken(HttpServletResponse response, String token) {
 		if(StringUtils.isEmpty(token)) {
 			return null;
@@ -71,6 +72,7 @@ public class MiaoshaUserService {
 		}
 		return user;
 	}
+	
 
 	public String login(HttpServletResponse response, LoginVo loginVo) {
 		if(loginVo == null) {
@@ -92,11 +94,10 @@ public class MiaoshaUserService {
 		}
 		//生成cookie
 		String token	 = UUIDUtil.uuid();
-		//todo:用户每登陆一次就生成一个token
 		addCookie(response, token, user);
 		return token;
 	}
-
+	
 	private void addCookie(HttpServletResponse response, String token, MiaoshaUser user) {
 		redisService.set(MiaoshaUserKey.token, token, user);
 		Cookie cookie = new Cookie(COOKI_NAME_TOKEN, token);
@@ -104,4 +105,5 @@ public class MiaoshaUserService {
 		cookie.setPath("/");
 		response.addCookie(cookie);
 	}
+
 }
