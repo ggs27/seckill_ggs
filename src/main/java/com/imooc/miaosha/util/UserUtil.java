@@ -7,6 +7,9 @@ import com.imooc.miaosha.domain.MiaoshaUser;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,13 +26,13 @@ public class UserUtil {
 			user.setNickname("user"+i);
 			user.setRegisterDate(new Date());
 			user.setSalt("1a2b3c");
-			user.setPassword(MD5Util.inputPassToDbPass("123456", user.getSalt()));
+			user.setPassword(MD5Util.inputPassToDbPass("627112", user.getSalt()));
 			users.add(user);
 		}
 		System.out.println("create user");
 //		//插入数据库
 //		Connection conn = DBUtil.getConn();
-//		String sql = "insert into miaosha_user(login_count, nickname, register_date, salt, password, id)values(?,?,?,?,?,?)";
+//		String sql = "insert into sk_user(login_count, nickname, register_date, salt, password, id)values(?,?,?,?,?,?)";
 //		PreparedStatement pstmt = conn.prepareStatement(sql);
 //		for(int i=0;i<users.size();i++) {
 //			MiaoshaUser user = users.get(i);
@@ -47,7 +50,7 @@ public class UserUtil {
 //		System.out.println("insert to db");
 		//登录，生成token
 		String urlString = "http://localhost:8080/login/do_login";
-		File file = new File("D:/tokens.txt");
+		File file = new File("/home/guoguisong/tokens.txt");
 		if(file.exists()) {
 			file.delete();
 		}
@@ -61,7 +64,7 @@ public class UserUtil {
 			co.setRequestMethod("POST");
 			co.setDoOutput(true);
 			OutputStream out = co.getOutputStream();
-			String params = "mobile="+user.getId()+"&password="+MD5Util.inputPassToFormPass("123456");
+			String params = "mobile="+user.getId()+"&password="+MD5Util.inputPassToFormPass("627112");
 			out.write(params.getBytes());
 			out.flush();
 			InputStream inputStream = co.getInputStream();
